@@ -8,6 +8,7 @@
 *   - Derivative part as low path filter with parameter with parameter N
 *   - Setpoints for proportional and derivative paths, with parameters Wp and Wd respectively
 * Based on http://controlsystemslab.com/advanced-pid-controller-implementation/
+* Site seems to be down, link to old version via web archive - https://web.archive.org/web/20170716045041/http://controlsystemslab.com/advanced-pid-controller-implementation/
 *
 * Created on 15 January 2018
 ******************************************************************************/
@@ -26,10 +27,10 @@ typedef struct {
     /*
      * PID controller variables are all in Q15.16
      */
-    _Q16 e0, e1;                // True error, z, and z^-1
+    _Q16 e0, e1, e2;            // True error, z, z^-1, and z^-2
     _Q16 ep0, ep1, ep2;         // Error, proportional path, z, z^-1, and z^-2
     _Q16 ed0, ed1, ed2;         // Error, derivative path, z, z^-1, and z^-2
-    _Q16 eus0, eus1;            // Anti-windup calculation path, z, and z^-1
+    _Q16 eus0, eus1, eus2;      // Anti-windup calculation path, z, z^-1, and z^-2
     _Q16 u0, u1, u2;            // Controller output, z, z^-1, and z^-2
 } PidControllerState;
 
@@ -57,7 +58,7 @@ typedef struct {
      */
     _Q16 a1, a2;
     _Q16 b1, b2, b3;
-    _Q16 c1, c2, c3, c4;
+    _Q16 c1, c2, c3, c4, c5, c6;
     _Q16 d1, d2, d3;
 } PidControllerParameters;
 
